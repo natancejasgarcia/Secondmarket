@@ -1,0 +1,14 @@
+.swiper-container {
+    width: 100%;
+    height: auto;
+  }
+  
+  .swiper-slide {
+    width: auto;
+    height: auto;
+  }
+  
+  body,
+  html {
+    overflow-x: hidden; /* Evita el desplazamiento horizontal en toda la página */
+  }
