@@ -22,19 +22,21 @@
             @forelse ($products as $product)
             <div class="col mb-4">
                 <div class="card h-100">
-                    <img src="{{ Storage::url($product->image) }}" alt="Imagen del producto" class="img-fluid rounded border">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="card-text">{{ $product->price }} €</p>
+                    <a href="{{ route('dashboard.show', $product->id) }}" class="stretched-link text-decoration-none text-dark">
+                        <img src="{{ Storage::url($product->image) }}" alt="Imagen del producto" class="img-fluid rounded border">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text">{{ $product->price }} €</p>
+                        </div>
+                    </a>
+                    <div class="card-footer bg-white border-0">
                         <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <a href="{{ route('dashboard.edit', $product->id) }}" class="btn btn-secondary">Editar</a>
-                                <form action="{{ route('dashboard.destroy', $product->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
-                                </form>
-                            </div>
+                            <a href="{{ route('dashboard.edit', $product->id) }}" class="btn btn-secondary">Editar</a>
+                            <form action="{{ route('dashboard.destroy', $product->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -44,6 +46,7 @@
             @endforelse
         </div>
     </div>
+
     <x-footer />
 
     <!-- jQuery, necesario para Bootstrap JS -->
