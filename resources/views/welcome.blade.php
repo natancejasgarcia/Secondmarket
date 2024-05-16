@@ -8,8 +8,6 @@
     <title>SecondMarket | Inicio</title>
     <!-- Enlace a Swiper's CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-    <!-- Swiper's JavaScript -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -43,8 +41,6 @@
             font-size: 1.1rem;
             color: #333;
         }
-
-
 
         .card {
             display: flex;
@@ -85,7 +81,6 @@
             height: 300px;
         }
 
-        /* Añadir estilos para hacer que se muestren dos productos por fila en móviles */
         @media (max-width: 576px) {
             .row-cols-1.row-cols-md-3.g-4 .col {
                 flex: 0 0 50%;
@@ -101,7 +96,6 @@
             }
         }
 
-        /* Ajustar el tamaño de las tarjetas en el slider */
         .swiper-container .card {
             max-width: 150px;
         }
@@ -121,19 +115,79 @@
         .footer-space {
             margin-bottom: 50px;
         }
+
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            /* Cambiar la altura del video */
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .jumbotron {
+            padding: 0;
+            margin: 0;
+            position: relative;
+            height: 60vh;
+            /* Cambiar la altura de la jumbotron */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .jumbotron h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .jumbotron p {
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 
 <body>
     <x-navbar />
 
-    <!-- Mensaje de bienvenida -->
-    <div class="jumbotron text-center">
-        <h1 class="display-4">¡Hola!</h1>
-        <p class="lead">Bienvenido a SecondMarket.</p>
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="{{ asset('images/video.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay">
+            <div>
+                <p class="display-5">Si lo imaginas, <br> esta en Secondmarket</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Categorías -->
     <div class="container mt-5">
         <h2 class="text-center mb-4">Categorías</h2>
         <div class="swiper-container" style="overflow: hidden;">
@@ -147,12 +201,10 @@
                 </div>
                 @endforeach
             </div>
-
         </div>
     </div>
 
     <h3 class="fw-bold p-3 text-center">Estos productos te pueden interesar...</h3>
-    <!-- Productos -->
     <div class="container mt-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @forelse ($products as $product)
@@ -173,7 +225,6 @@
         </div>
     </div>
 
-    <!-- Formulario de suscripción -->
     <div class="footer-space">
         <div class="container mt-5 footer-space">
             <h2 class="text-center mb-4">Suscríbete a nuestro Boletín</h2>
@@ -216,11 +267,8 @@
         });
     </script>
 
-    <!-- jQuery, necesario para Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!-- Popper.js, necesario para los dropdowns, tooltips y popovers en Bootstrap 4 -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
