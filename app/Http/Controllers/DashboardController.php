@@ -65,9 +65,10 @@ class DashboardController extends Controller
         $product = Product::findOrFail($id);
 
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validar imagen opcional
         ]);
 
         if ($request->hasFile('image')) {
@@ -82,6 +83,7 @@ class DashboardController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Producto actualizado correctamente.');
     }
+
 
     public function destroy($id)
     {

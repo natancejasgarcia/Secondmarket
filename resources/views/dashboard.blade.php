@@ -22,8 +22,8 @@
             @forelse ($products as $product)
             <div class="col mb-4">
                 <div class="card h-100">
-                    <a href="{{ route('dashboard.show', $product->id) }}" class="stretched-link text-decoration-none text-dark">
-                        <img src="{{ Storage::url($product->image) }}" alt="Imagen del producto" class="img-fluid rounded border">
+                    <a href="{{ route('dashboard.edit', $product->id) }}" class="stretched-link text-decoration-none text-dark">
+                        <img src="{{ Storage::url($product->image) }}" alt="Imagen del producto" class="img-fluid rounded-top border-bottom">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{{ $product->price }} €</p>
@@ -46,6 +46,7 @@
             @endforelse
         </div>
     </div>
+
 
     <x-footer />
 

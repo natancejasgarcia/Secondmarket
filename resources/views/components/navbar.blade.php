@@ -5,7 +5,7 @@
         <ul>
             <li><a href="{{ route('welcome') }}">Inicio</a></li>
             <li><a href="{{ route('products.index') }}">Productos</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="{{ route('contact') }}">Contacto</a></li>
             @auth
             <li><a href="{{ url('/dashboard') }}">Mis productos</a></li>
             <li><a href="{{ route('products.create') }}" class="btn-success">Subir Producto</a></li>

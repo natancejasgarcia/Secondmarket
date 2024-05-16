@@ -151,10 +151,9 @@
         </div>
     </div>
 
-    <h3 class="fw-bold p-3">Estos productos te pueden interesar...</h3>
+    <h3 class="fw-bold p-3 text-center">Estos productos te pueden interesar...</h3>
     <!-- Productos -->
     <div class="container mt-5">
-        <h1 class="mb-3">Todos los Productos</h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @forelse ($products as $product)
             <div class="col mb-4">
@@ -169,7 +168,7 @@
                 </div>
             </div>
             @empty
-            <p>No hay productos disponibles.</p>
+            <p class="text-center">No hay productos disponibles.</p>
             @endforelse
         </div>
     </div>

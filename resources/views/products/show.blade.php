@@ -18,6 +18,37 @@
 
 <body>
     <style>
+        .flag-buttons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .flag-button {
+            border: none;
+            background-color: white;
+            cursor: pointer;
+            margin-left: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .flag-button:hover {
+            transform: scale(1.1);
+        }
+
+        .flag-button img {
+            width: 24px;
+            height: 24px;
+        }
+
+
         .content-with-padding {
             padding-bottom: 50px;
             /* Ajusta el valor según tus necesidades */
@@ -81,7 +112,17 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-secondary text-white">Información del Vendedor</div>
+                    <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                        <span>Información del Vendedor</span>
+                        <div class="flag-buttons">
+                            <button class="flag-button" data-toggle="tooltip" data-placement="top" title="Notifica que el usuario está cumpliendo con las normas de conducta de SecondMarket">
+                                <img src="{{ asset('images/verde.png') }}" alt="Bandera Verde" />
+                            </button>
+                            <button class="flag-button" data-toggle="tooltip" data-placement="top" title="Notifica que el usuario está incumpliendo las normas de conducta de SecondMarket">
+                                <img src="{{ asset('images/roja.png') }}" alt="Bandera Roja" />
+                            </button>
+                        </div>
+                    </div>
                     <div class="card-body">
                         @if ($product->user)
                         <p><strong>Nombre:</strong> {{ $product->user->name }}</p>
@@ -100,7 +141,11 @@
     </div>
 
     <x-footer />
-
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
