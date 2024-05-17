@@ -19,10 +19,10 @@
                 <p>Email: <a href="mailto:email@example.com">natan@natan.com</a></p>
                 <p>Teléfono: +34 123 456 789</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="{{ url('/instagram') }}"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ url('/instagram') }}"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ url('/instagram') }}"><i class="fab fa-instagram"></i></a>
+                    <a href="{{ url('/instagram') }}"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
 {
@@ -48,11 +50,6 @@ class DashboardController extends Controller
         return redirect()->route('dashboard')->with('success', 'Producto creado correctamente.');
     }
 
-    public function show($id)
-    {
-        $product = Product::findOrFail($id);
-        return view('dashboard.show', compact('product'));
-    }
 
     public function edit($id)
     {
@@ -83,12 +80,16 @@ class DashboardController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Producto actualizado correctamente.');
     }
-
-
     public function destroy($id)
     {
+        Log::info('Entering destroy method');
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('dashboard')->with('success', 'Producto eliminado correctamente.');
+        Log::info('Product deleted: ' . $id);
+
+        // Configurar el mensaje flash con SweetAlert
+        Alert::success('Eliminado', 'Producto eliminado exitosamente');
+
+        return redirect()->route('dashboard');
     }
 }

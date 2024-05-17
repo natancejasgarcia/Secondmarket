@@ -4,16 +4,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../resources/css/main.css" />
-    <title>Dashboard | SecondMarkert</title>
-    <!-- Enlace a Swiper's CSS -->
+    <title>Dashboard | Ecomarket</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
-
     <x-navbar />
     <x-app-layout />
+
 
     <!--product-->
     <div class="container mt-5">
@@ -22,14 +24,10 @@
             @forelse ($products as $product)
             <div class="col mb-4">
                 <div class="card h-100">
-                    <a href="{{ route('dashboard.edit', $product->id) }}" class="stretched-link text-decoration-none text-dark">
-                        <img src="{{ Storage::url($product->image) }}" alt="Imagen del producto" class="img-fluid rounded-top border-bottom">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $product->name }}</h5>
-                            <p class="card-text">{{ $product->price }} €</p>
-                        </div>
-                    </a>
-                    <div class="card-footer bg-white border-0">
+                    <img src="{{ Storage::url($product->image) }}" alt="Imagen del producto" class="img-fluid rounded border">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $product->name }}</h5>
+                        <p class="card-text">{{ $product->price }} €</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ route('dashboard.edit', $product->id) }}" class="btn btn-secondary">Editar</a>
                             <form action="{{ route('dashboard.destroy', $product->id) }}" method="POST" class="d-inline">
@@ -46,17 +44,16 @@
             @endforelse
         </div>
     </div>
-
+    @include('sweetalert::alert')
 
     <x-footer />
 
-    <!-- jQuery, necesario para Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Incluir jQuery antes de Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Popper.js, necesario para los dropdowns, tooltips y popovers en Bootstrap 4 -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>
