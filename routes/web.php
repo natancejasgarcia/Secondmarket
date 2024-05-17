@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProfileController;
-use App\Models\Category;
-use App\Models\Product;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DashboardController;
+use App\Models\Category;
+use App\Models\Product;
 
 // Rutas de autenticación
 require __DIR__ . '/auth.php';
@@ -21,9 +21,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 // Ruta del Dashboard con middleware de autenticación y verificación
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Ruta de contacto
 Route::get('/contact', function () {
@@ -45,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
 // Rutas para la gestión de productos dentro del Dashboard (requieren autenticación)
 Route::middleware('auth')->group(function () {
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); // Ruta para mostrar el formulario de creación
+    Route::get('/create', [ProductController::class, 'create'])->name('createproduct.create');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store'); // Ruta para almacenar el nuevo producto
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/dashboard/create', [DashboardController::class, 'create'])->name('dashboard.create');
@@ -55,7 +53,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/dashboard/{id}', [DashboardController::class, 'update'])->name('dashboard.update');
     Route::delete('/dashboard/{id}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
     // Rutas para las conversaciones
     Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');
     Route::get('/conversations/{conversation}', [ConversationController::class, 'show'])->name('conversations.show');

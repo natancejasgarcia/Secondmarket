@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\user;
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -23,8 +23,9 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('products.create', compact('categories'));
+        return view('createproduct.create', compact('categories'));
     }
+
     public function show($id)
     {
         $product = Product::findOrFail($id);
@@ -40,9 +41,9 @@ class ProductController extends Controller
 
         // Validar los datos del formulario
         $validatedData = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric|min:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category_id' => 'required|exists:categories,id',
         ]);
@@ -57,12 +58,12 @@ class ProductController extends Controller
             'price' => $validatedData['price'],
             'image' => $imagePath,
             'category_id' => $validatedData['category_id'],
-            'user_id' => Auth::id(), // Directamente utilizando Auth::id() aquí
+            'user_id' => Auth::id(),
         ]);
 
         // Después de crear el producto, muestra una notificación
         Alert::success('Éxito', '¡Producto creado exitosamente!');
 
-        return redirect()->route('products.create');
+        return redirect()->route('createproduct.create');
     }
 }

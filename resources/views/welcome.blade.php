@@ -125,6 +125,10 @@
             z-index: -1;
         }
 
+        h1 {
+            padding: 20px;
+        }
+
         .video-background video {
             position: absolute;
             top: 50%;
@@ -170,12 +174,101 @@
         .jumbotron p {
             font-size: 1.5rem;
         }
+
+        .swiper-container {
+            position: relative;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #007bff;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .swiper-button-prev {
+            left: 10px;
+        }
+
+        .swiper-button-next {
+            right: 10px;
+        }
+
+        .swiper-slide {
+            transition: opacity 0.3s ease;
+        }
+
+        .swiper-container {
+            overflow: hidden;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .swiper-container-fade .swiper-slide {
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .swiper-container-fade .swiper-slide-visible {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        @media (max-width: 576px) {
+            .swiper-button-prev {
+                left: 1px;
+            }
+
+            .swiper-button-next {
+                right: 1px;
+            }
+
+        }
+
+        .video-text-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .video-text-container .text-content,
+        .video-text-container .video-content {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+        }
+
+        .video-text-container .text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .video-text-container .video-content {
+            display: flex;
+            justify-content: center;
+        }
+
+        .video-text-container video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            aspect-ratio: 1 / 1;
+            /* Para mantener un formato cuadrado */
+        }
     </style>
 </head>
 
 <body>
     <x-navbar />
-
     <div class="video-background">
         <video autoplay muted loop playsinline>
             <source src="{{ asset('images/video.mp4') }}" type="video/mp4">
@@ -183,17 +276,18 @@
         </video>
         <div class="video-overlay">
             <div>
-                <p class="display-5">Si lo imaginas, <br> esta en Secondmarket</p>
+                <p class="display-5">Si lo imaginas, <br> esta en <b>Secondmarket</b></p>
             </div>
         </div>
     </div>
+    <h1 class="display-4 text-center mb-4">El mayor mercado de segunda mano <br> más grande del mundo</h1>
 
     <div class="container mt-5">
         <h2 class="text-center mb-4">Categorías</h2>
-        <div class="swiper-container" style="overflow: hidden;">
+        <div class="swiper-container swiper-container-fade">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
-                <div class="swiper-slide">
+                <div class="swiper-slide swiper-slide-visible">
                     <a href="{{ route('categories.show', $category->id) }}" class="category-card">
                         <i class="fas {{ $category->icon }} category-icon"></i>
                         <p class="category-name">{{ $category->name }}</p>
@@ -201,6 +295,8 @@
                 </div>
                 @endforeach
             </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </div>
 
@@ -222,6 +318,19 @@
             @empty
             <p class="text-center">No hay productos disponibles.</p>
             @endforelse
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="video-text-container">
+            <div class="text-content">
+                <p class="lead">Descubre una amplia gama de productos de segunda mano a precios increíbles. Compra y vende de manera fácil y segura en nuestra plataforma.</p>
+            </div>
+            <div class="video-content">
+                <video autoplay muted loop playsinline>
+                    <source src="{{ asset('images/video2.mp4') }}" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
         </div>
     </div>
 
@@ -250,6 +359,10 @@
                 el: '.swiper-pagination',
                 clickable: true,
             },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
             breakpoints: {
                 320: {
                     slidesPerView: 2,
@@ -264,6 +377,20 @@
                     spaceBetween: 30,
                 },
             },
+        });
+
+        // Fade effect for the swiper slides
+        swiper.on('slideChange', function() {
+            const slides = swiper.slides;
+            const activeIndex = swiper.activeIndex;
+            const slidesPerView = swiper.params.slidesPerView;
+            slides.each(function(index, slide) {
+                if (index >= activeIndex && index < activeIndex + slidesPerView) {
+                    $(slide).addClass('swiper-slide-visible');
+                } else {
+                    $(slide).removeClass('swiper-slide-visible');
+                }
+            });
         });
     </script>
 

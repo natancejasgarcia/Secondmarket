@@ -7,10 +7,10 @@
             <li><a href="{{ route('products.index') }}">Productos</a></li>
             <li><a href="{{ route('contact') }}">Contacto</a></li>
             @auth
-            <li><a href="{{ url('/dashboard') }}">Mis productos</a></li>
-            <li><a href="{{ route('products.create') }}" class="btn-success">Subir Producto</a></li>
+            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ route('createproduct.create') }}" class="btn-success">Subir Producto</a></li>
             @else
-            <li><a href="{{ route('login') }}">Iniciar sesion</a></li>
+            <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
             @if (Route::has('register'))
             <li><a href="{{ route('register') }}">Registrarse</a></li>
             @endif
@@ -18,7 +18,6 @@
         </ul>
     </div>
 </div>
-
 <style>
     .navbar {
         background-color: #ffffff;
