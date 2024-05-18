@@ -18,6 +18,13 @@
 
 <body>
     <style>
+        .flag-count {
+            color: #ffc107;
+            /* Color amarillo */
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
         .flag-buttons {
             display: flex;
             justify-content: flex-end;
@@ -108,6 +115,7 @@
         </div>
     </div>
 
+
     <div class="container mt-3 content-with-padding">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -115,12 +123,22 @@
                     <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
                         <span>Información del Vendedor</span>
                         <div class="flag-buttons">
-                            <button class="flag-button" data-toggle="tooltip" data-placement="top" title="Notifica que el usuario está cumpliendo con las normas de conducta de SecondMarket">
-                                <img src="{{ asset('images/verde.png') }}" alt="Bandera Verde" />
-                            </button>
-                            <button class="flag-button" data-toggle="tooltip" data-placement="top" title="Notifica que el usuario está incumpliendo las normas de conducta de SecondMarket">
-                                <img src="{{ asset('images/roja.png') }}" alt="Bandera Roja" />
-                            </button>
+                            <form action="{{ route('user.flag', $product->user->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <input type="hidden" name="flag_type" value="green">
+                                <button type="submit" class="flag-button btn btn-success" data-toggle="tooltip" data-placement="top" title="Notifica que el usuario está cumpliendo con las normas de conducta de SecondMarket">
+                                    <img src="{{ asset('images/verde.png') }}" alt="Bandera Verde" />
+                                    <span class="flag-count">{{ $product->user->flags->where('flag_type', 'green')->count() }}</span>
+                                </button>
+                            </form>
+                            <form action="{{ route('user.flag', $product->user->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <input type="hidden" name="flag_type" value="red">
+                                <button type="submit" class="flag-button btn btn-danger" data-toggle="tooltip" data-placement="top" title="Notifica que el usuario está incumpliendo las normas de conducta de SecondMarket">
+                                    <img src="{{ asset('images/roja.png') }}" alt="Bandera Roja" />
+                                    <span class="flag-count">{{ $product->user->flags->where('flag_type', 'red')->count() }}</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <div class="card-body">
@@ -140,6 +158,7 @@
         </div>
     </div>
 
+    @include('sweetalert::alert')
     <x-footer />
     <script>
         $(function() {

@@ -9,7 +9,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DashboardController;
 use App\Models\Category;
 use App\Models\Product;
-
+use App\Http\Controllers\FlagController;
 // Rutas de autenticación
 require __DIR__ . '/auth.php';
 
@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/user/{user}/flag', [FlagController::class, 'store'])->name('user.flag')->middleware('auth');
 });
 
 // Rutas para la gestión de productos dentro del Dashboard (requieren autenticación)

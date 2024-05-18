@@ -12,32 +12,33 @@
 </head>
 
 <body>
-<x-navbar />
+    <x-navbar />
 
 
     <!--product-->
     <div class="container mt-5">
-    <h1 class="mb-3">{{ $category->name }}</h1>
-    <p>{{ $category->description }}</p>
-    <h2>Productos</h2>
-    <div class="row row-cols-1 row-cols-md-3">
-        @foreach ($category->products ?? [] as $product)
-        <div class="col mb-4">
-            <!-- Enlace que envuelve la tarjeta, llevando al show del producto -->
-            <a href="{{ route('products.show', ['id' => $product->id]) }}" class="text-decoration-none text-dark">
-                <div class="card h-100">
-                    <img src="{{ Storage::url($product->image) }}" alt="Imagen del producto" class="img-fluid rounded border">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="card-text">{{ $product->price }} €</p>
-                        <p class="card-category mb-0">Categoría: {{ $category->name }}</p>
+        <h1 class="mb-3">{{ $category->name }}</h1>
+        <p>{{ $category->description }}</p>
+        <h2>Productos</h2>
+        <div class="row row-cols-1 row-cols-md-3">
+            @foreach ($category->products ?? [] as $product)
+            <div class="col mb-4">
+                <!-- Enlace que envuelve la tarjeta, llevando al show del producto -->
+                <a href="{{ route('products.show', ['id' => $product->id]) }}" class="text-decoration-none text-dark">
+                    <div class="card h-100">
+                        <img src="{{ Storage::url($product->image) }}" alt="Imagen del producto" class="img-fluid rounded border">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text">{{ $product->price }} €</p>
+                            <p class="card-category mb-0">Categoría: {{ $category->name }}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
-</div>
+    <x-footer />
 
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
