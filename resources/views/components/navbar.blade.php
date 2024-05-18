@@ -4,10 +4,10 @@
     <div class="navbar-links">
         <ul>
             <li><a href="{{ route('welcome') }}">Inicio</a></li>
-            <li><a href="{{ route('products.index') }}">Productos</a></li>
+            <li><a href="{{ route('products.index') }}">Todos los Productos</a></li>
             <li><a href="{{ route('contact') }}">Contacto</a></li>
             @auth
-            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ route('dashboard') }}">Mis productos</a></li>
             <li><a href="{{ route('createproduct.create') }}" class="btn-success">Subir Producto</a></li>
             @else
             <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
