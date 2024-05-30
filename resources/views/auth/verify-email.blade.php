@@ -1,31 +1,66 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+<!DOCTYPE html>
+<html lang="es">
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Correo Electrónico | SecondMarket</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        .verification-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .verification-box {
+            border: 1px solid #ddd;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .verification-box h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .verification-box p {
+            margin-bottom: 30px;
+        }
+
+        .verification-box button {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <x-navbar />
+
+    <div class="container verification-container">
+        <div class="verification-box">
+            <h1>Verifica tu dirección de correo electrónico</h1>
+            <p>Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, revisa tu bandeja de entrada y sigue las instrucciones.</p>
+            <form method="POST" action="{{ route('verification.send') }}">
+                @csrf
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-redo-alt"></i> Reenviar enlace de verificación
+                </button>
+            </form>
         </div>
-    @endif
-
-    <div class="mt-4 flex items-center justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
-
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div>
-        </form>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                {{ __('Log Out') }}
-            </button>
-        </form>
     </div>
-</x-guest-layout>
+
+    <x-footer />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
