@@ -58,7 +58,7 @@
             <div class="col-md-8">
                 <div class="contact-form">
                     <h2>Envíanos un mensaje</h2>
-                    <form action="#" method="POST">
+                    <form action="{{ route('contact.send') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nombre:</label>
@@ -83,6 +83,11 @@
                     <p><i class="fas fa-phone"></i> Teléfono: +34 123 456 789</p>
                     <p><i class="fas fa-envelope"></i> Email: <a href="mailto:natan@natan.com">natan@natan.com</a></p>
                 </div>
+                @if(session('success'))
+                <div class="alert alert-success mt-3">
+                    {{ session('success') }}
+                </div>
+                @endif
             </div>
         </div>
     </div>

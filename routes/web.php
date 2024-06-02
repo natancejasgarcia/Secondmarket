@@ -10,10 +10,12 @@ use App\Http\Controllers\DashboardController;
 use App\Models\Category;
 use App\Models\Product;
 use App\Http\Controllers\FlagController;
-
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\ContactController;
 // Rutas de autenticación
 require __DIR__ . '/auth.php';
-
+Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 // Ruta principal
 Route::get('/', function () {
     $categories = Category::all();

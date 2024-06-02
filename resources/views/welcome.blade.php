@@ -333,11 +333,10 @@
             </div>
         </div>
     </div>
-
     <div class="footer-space">
         <div class="container mt-5 footer-space">
             <h2 class="text-center mb-4">Suscríbete a nuestro Boletín</h2>
-            <form action="#" method="POST" class="row justify-content-center">
+            <form action="{{ route('subscribe') }}" method="POST" class="row justify-content-center">
                 @csrf
                 <div class="col-12 col-md-8 mb-3">
                     <input type="email" name="email" class="form-control" placeholder="Ingresa tu correo electrónico" required>
@@ -346,6 +345,11 @@
                     <button type="submit" class="btn btn-primary btn-block">Suscribirse</button>
                 </div>
             </form>
+            @if(session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div>
+            @endif
         </div>
     </div>
 
