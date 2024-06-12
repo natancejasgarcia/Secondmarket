@@ -37,6 +37,12 @@
         .verification-box button {
             width: 100%;
         }
+
+        .logout-link {
+            margin-top: 20px;
+            display: block;
+            color: #dc3545;
+        }
     </style>
 </head>
 
@@ -51,6 +57,12 @@
                 @csrf
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-redo-alt"></i> Reenviar enlace de verificación
+                </button>
+            </form>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-link logout-link">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
                 </button>
             </form>
         </div>

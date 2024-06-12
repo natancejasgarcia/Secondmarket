@@ -11,13 +11,43 @@ use App\Models\User;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Obtener todos los productos
-        $products = Product::all();
+        // Obtener el término de búsqueda y filtros
+        $search = $request->input('search');
+        $category = $request->input('category');
+        $min_price = $request->input('min_price');
+        $max_price = $request->input('max_price');
+
+        // Construir la consulta de productos
+        $query = Product::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+
+        if ($category) {
+            $query->where('category_id', $category);
+        }
+
+        if ($min_price) {
+            $query->where('price', '>=', $min_price);
+        }
+
+        if ($max_price) {
+            $query->where('price', '<=', $max_price);
+        }
+
+        $products = $query->paginate(12);
+
+        // Obtener todas las categorías para los filtros
+        $categories = Category::all();
 
         // Retornar la vista con todos los productos
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products', 'categories'));
     }
 
     public function create()
