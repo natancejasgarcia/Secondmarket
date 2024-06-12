@@ -7,15 +7,18 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DashboardController;
-use App\Models\Category;
-use App\Models\Product;
 use App\Http\Controllers\FlagController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ContactController;
+use App\Models\Category;
+use App\Models\Product;
+
 // Rutas de autenticación
 require __DIR__ . '/auth.php';
+
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
 // Ruta principal
 Route::get('/', function () {
     $categories = Category::all();
@@ -40,6 +43,7 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{id}/buy', [ProductController::class, 'buy'])->name('products.buy'); // Nueva ruta para la compra
 
 // Rutas relacionadas con el perfil del usuario
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -85,3 +89,6 @@ Route::middleware('auth')->group(function () {
         ->middleware('throttle:6,1')
         ->name('verification.send');
 });
+
+// Nueva ruta para enviar solicitud de compra
+Route::post('/purchase/send', [ContactController::class, 'sendPurchaseRequest'])->name('purchase.send');

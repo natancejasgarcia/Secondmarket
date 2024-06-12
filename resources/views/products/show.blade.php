@@ -106,7 +106,7 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12">
-                                <button type="button" class="btn btn-success btn-lg btn-block py-3">Comprar</button>
+                                <a href="{{ route('products.buy', $product->id) }}" class="btn btn-success btn-lg btn-block py-3">Comprar</a>
                             </div>
                         </div>
                     </div>

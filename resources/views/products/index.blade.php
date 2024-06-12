@@ -65,6 +65,10 @@
             border-bottom-left-radius: 0;
         }
 
+        .pagination {
+            justify-content: center;
+        }
+
         @media (max-width: 576px) {
             .row-cols-1.row-cols-md-3.g-4 .col {
                 flex: 0 0 50%;
@@ -133,7 +137,7 @@
             @endforelse
         </div>
         <div class="d-flex justify-content-center">
-            {{ $products->links() }}
+            {{ $products->links('pagination::bootstrap-4') }}
         </div>
     </div>
 

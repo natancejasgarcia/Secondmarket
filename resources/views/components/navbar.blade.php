@@ -9,6 +9,7 @@
             @auth
             <li><a href="{{ route('dashboard') }}">Mis productos</a></li>
             <li><a href="{{ route('createproduct.create') }}" class="btn-success">Subir Producto</a></li>
+            <li><a href="{{ route('profile.edit') }}">Mi Cuenta</a></li>
             @else
             <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
             @if (Route::has('register'))
