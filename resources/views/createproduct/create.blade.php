@@ -88,6 +88,11 @@
         .carta {
             padding: 10px;
         }
+
+        .error-message {
+            color: red;
+            font-size: 0.875em;
+        }
     </style>
 </head>
 
@@ -113,28 +118,43 @@
                                             <input type="file" name="image" id="image" class="form-control-file" accept="image/*" onchange="loadFile(event)">
                                         </label>
                                     </div>
+                                    @error('image')
+                                    <span class="error-message">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label for="name">Nombre del producto</label>
-                                        <input type="text" name="name" class="form-control" id="name" required>
+                                        <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" required>
+                                        @error('name')
+                                        <span class="error-message">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Descripción</label>
-                                        <textarea name="description" class="form-control" id="description" required></textarea>
+                                        <textarea name="description" class="form-control" id="description" required>{{ old('description') }}</textarea>
+                                        @error('description')
+                                        <span class="error-message">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="price">Precio</label>
-                                        <input type="number" name="price" class="form-control" id="price" required>
+                                        <input type="number" name="price" class="form-control" id="price" value="{{ old('price') }}" required>
+                                        @error('price')
+                                        <span class="error-message">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="category">Categoría</label>
                                         <select name="category_id" class="form-control" id="category_id" required>
                                             <option value="" selected>Selecciona una categoría</option>
                                             @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('category_id')
+                                        <span class="error-message">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Guardar Producto</button>
