@@ -11,12 +11,11 @@
                     <li><a href="{{ url('/') }}">Inicio</a></li>
                     <li><a href="{{ url('/products') }}">Productos</a></li>
                     <li><a href="{{ url('/contact') }}">Contacto</a></li>
-                    <li><a href="{{ url('/about') }}">Sobre Nosotros</a></li>
                 </ul>
             </div>
             <div class="col-md-4">
                 <h5>Contacto</h5>
-                <p>Email: <a href="mailto:email@example.com">natan@natan.com</a></p>
+                <p>Email: natan@natan.com</p>
                 <p>Teléfono: +34 123 456 789</p>
                 <div class="social-icons">
                     <a href="{{ url('/instagram') }}"><i class="fab fa-facebook-f"></i></a>

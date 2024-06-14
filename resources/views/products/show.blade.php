@@ -146,9 +146,13 @@
                         <p><strong>Nombre:</strong> {{ $product->user->name }}</p>
                         <p><strong>Teléfono:</strong> {{ $product->user->phone ?? 'No proporcionado' }}</p>
                         <p><strong>Correo Verificado:</strong> {{ $product->user->email_verified_at ? 'Sí' : 'No' }}</p>
+
+                        @if ($product->user->phone)
                         <a href="https://wa.me/{{ $product->user->phone }}?text=Estoy%20interesado%20en%20tu%20producto%20{{ urlencode($product->name) }}" class="btn btn-primary" target="_blank">
                             Enviar Mensaje
                         </a>
+                        @endif
+
                         @else
                         <p>Información del usuario no disponible.</p>
                         @endif

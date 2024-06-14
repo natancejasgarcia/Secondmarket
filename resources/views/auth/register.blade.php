@@ -19,9 +19,9 @@
         </div>
 
         <!-- Phone -->
-        <div>
+        <div class="mt-4">
             <x-input-label for="phone" :value="__('Teléfono')" />
-            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
+            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" />
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
