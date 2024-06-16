@@ -18,6 +18,7 @@ require __DIR__ . '/auth.php';
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 // Ruta principal
 Route::get('/', function () {

@@ -5,6 +5,7 @@
         <ul>
             <li><a href="{{ route('welcome') }}">Inicio</a></li>
             <li><a href="{{ route('products.index') }}">Todos los Productos</a></li>
+            <li><a href="{{ route('categories.index') }}">Categorías</a></li> <!-- Nuevo botón para categorías -->
             <li><a href="{{ route('contact') }}">Contacto</a></li>
             @auth
             <li><a href="{{ route('dashboard') }}">Mis productos</a></li>
@@ -19,6 +20,7 @@
         </ul>
     </div>
 </div>
+
 <style>
     .navbar {
         background-color: #ffffff;
