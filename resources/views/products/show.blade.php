@@ -8,10 +8,8 @@
     <title>Producto | {{ $product->name }}</title>
     <!-- Enlace a Swiper's CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
     <!-- Swiper's JavaScript -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
@@ -115,7 +113,6 @@
         </div>
     </div>
 
-
     <div class="container mt-3 content-with-padding">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -158,6 +155,45 @@
                         @endif
                     </div>
                 </div>
+
+                <!-- Sección de reseñas del usuario -->
+                <div class="card border-0 shadow-sm mt-4">
+                    <div class="card-header bg-secondary text-white">Reseñas del Vendedor</div>
+                    <div class="card-body">
+                        @if ($product->user->reviews->isEmpty())
+                        <p>No hay reseñas para este usuario.</p>
+                        @else
+                        @foreach ($product->user->reviews as $review)
+                        <div class="review mb-3">
+                            <h5 class="mb-1">{{ $review->reviewer->name }}</h5>
+                            <p class="mb-0">{{ $review->review }}</p>
+                            <small class="text-muted">{{ $review->created_at->format('d M Y') }}</small>
+                        </div>
+                        <hr>
+                        @endforeach
+                        @endif
+                    </div>
+                </div>
+
+                <!-- Formulario para añadir reseñas -->
+                @auth
+                <div class="card border-0 shadow-sm mt-4">
+                    <div class="card-header bg-secondary text-white">Añadir una Reseña</div>
+                    <div class="card-body">
+                        <form action="{{ route('user-reviews.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ $product->user->id }}">
+                            <input type="hidden" name="reviewer_id" value="{{ auth()->user()->id }}">
+                            <div class="form-group">
+                                <label for="review">Tu Reseña</label>
+                                <textarea name="review" id="review" rows="3" class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Enviar Reseña</button>
+                        </form>
+                    </div>
+                </div>
+                @endauth
+
             </div>
         </div>
     </div>

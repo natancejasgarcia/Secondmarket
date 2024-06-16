@@ -12,10 +12,12 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ContactController;
 use App\Models\Category;
 use App\Models\Product;
+use App\Http\Controllers\UserReviewController;
 
 // Rutas de autenticación
 require __DIR__ . '/auth.php';
 
+Route::post('/user-reviews', [UserReviewController::class, 'store'])->name('user-reviews.store');
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
