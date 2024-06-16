@@ -264,6 +264,66 @@
             aspect-ratio: 1 / 1;
             /* Para mantener un formato cuadrado */
         }
+
+        .icon-section {
+            background-color: #f0f0f0;
+            padding: 10px 0;
+            /* Ajusta el padding aquí */
+        }
+
+        .icon-section .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .icon-section .icon-container i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .icon-section .icon-container h5 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .icon-section .icon-container p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .wave-top {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-top svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 120px;
+        }
+
+        .wave-bottom {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-bottom svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 120px;
+        }
     </style>
 </head>
 
@@ -297,6 +357,38 @@
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="icon-section my-5">
+        <div class="wave-top">
+            <svg viewBox="0 0 1440 320">
+                <path fill="#f0f0f0" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,176C384,192,480,192,576,181.3C672,171,768,149,864,122.7C960,96,1056,64,1152,80C1248,96,1344,160,1392,192L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="container py-5">
+            <div class="row text-center">
+                <div class="col-md-4 icon-container">
+                    <i class="fas fa-shield-alt"></i>
+                    <h5>Sitio Seguro y Privado</h5>
+                    <p>Tu seguridad es nuestra prioridad. Disfruta de una experiencia de compra segura y protegida.</p>
+                </div>
+                <div class="col-md-4 icon-container">
+                    <i class="fas fa-thumbs-up"></i>
+                    <h5>Calidad Garantizada</h5>
+                    <p>Todos nuestros productos pasan por un riguroso control de calidad.</p>
+                </div>
+                <div class="col-md-4 icon-container">
+                    <i class="fas fa-rocket"></i>
+                    <h5>Fácil y Rápido</h5>
+                    <p>Compra y vende de manera rápida y sencilla con nuestra plataforma intuitiva.</p>
+                </div>
+            </div>
+        </div>
+        <div class="wave-bottom">
+            <svg viewBox="0 0 1440 320">
+                <path fill="#f0f0f0" fill-opacity="1" d="M0,224L48,208C96,192,192,160,288,138.7C384,117,480,107,576,106.7C672,107,768,117,864,128C960,139,1056,149,1152,160C1248,171,1344,181,1392,186.7L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+            </svg>
         </div>
     </div>
 
