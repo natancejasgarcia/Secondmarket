@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
     <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1 0 auto;
+        }
+
+        .footer {
+            flex-shrink: 0;
+        }
+
         .no-products {
             text-align: center;
             margin-top: 50px;
@@ -31,8 +47,7 @@
 <body>
     <x-navbar />
 
-    <!--product-->
-    <div class="container mt-5">
+    <div class="container mt-5 content">
         <h1 class="mb-3">{{ $category->name }}</h1>
         <p>{{ $category->description }}</p>
         <h2>Productos</h2>
@@ -61,7 +76,7 @@
         </div>
         @endif
     </div>
-    <x-footer />
+    <x-footer class="footer" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
